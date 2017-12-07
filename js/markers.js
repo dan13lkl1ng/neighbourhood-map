@@ -1,4 +1,4 @@
-var markers = [{
+var myLocations = [{
         title: 'Cafe Kwae',
         lat: 5.601000,
         lng: -0.177042
