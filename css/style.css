@@ -1,0 +1,12 @@
+body {
+    min-height: 100%;
+}
+
+#map {
+    min-height: 100%;
+    bottom: 0px;
+    height: 100%;
+    left: 0px;
+    position: absolute;
+    right: 0px;
+}
