@@ -1,5 +1,8 @@
 // Declare global variables for this application
 var map;
+// Foursquare clientID and client secret
+var fourSquareClientID = "104SKXFLB12DD0RLZUEO3CX5EWPN0WF1TM4C5VL2QRBVJRDY";
+var fourSquareClientSecret = "DPYGYHCAMDDMK0UYINKVXHLYQNXLOOMJYUKB55R2NCVJIQCN";
 
 function mapView() {
     var self = this;
@@ -72,8 +75,15 @@ function mapView() {
 
             // Close the infowindow if user clicks on the close button
             // infowindow.addListener('closeclick', function() {
-            //     infowindow.setMarker(null);
+            //     infowindow.this.marker(null);
             // });
+
+            // Foursquare API starts here
+            var fourSquareApiURL = 'https://api.foursquare.com/v2/venues/search?ll=' +
+                '5.599579' + ',' + '-0.178539' + '&client_id=' + fourSquareClientID +
+                '&client_secret=' + fourSquareClientSecret + '&query=' + marker.title;
+
+            $.getJSON(fourSquareApiURL, function(marker) {});
         }
 
     }
