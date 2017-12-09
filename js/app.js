@@ -81,7 +81,7 @@ function mapView() {
             // Foursquare API starts here
             var fourSquareApiURL = 'https://api.foursquare.com/v2/venues/search?ll=' +
                 marker.position["lat"] + ',' + marker.position["lng"] + '&client_id=' + fourSquareClientID +
-                '&client_secret=' + fourSquareClientSecret + '&query=' + marker.title;
+                '&client_secret=' + fourSquareClientSecret + '&query=' + marker.title + '&v=20171209';
 
             $.getJSON(fourSquareApiURL, function(marker) {});
             // alert(typeof(marker.position));
