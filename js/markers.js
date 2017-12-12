@@ -1,21 +1,26 @@
 var myLocations = [{
-        title: 'Cafe Kwae',
-        lat: 5.601000,
-        lng: -0.177042
+        title: 'Google Building 41',
+        lat: 37.422408,
+        lng: -122.085609
     },
     {
-        title: 'Coco Lounge',
-        lat: 5.599579,
-        lng: -0.178539
+        title: 'Google Android Lawn Statues',
+        lat: 37.418439,
+        lng: -122.088029
     },
     {
-        title: '+233 Jazz Bar & Grill',
-        lat: 5.573873,
-        lng: -0.195286
+        title: 'Computer History Museum',
+        lat: 37.414278,
+        lng: -122.077417
     },
     {
-        title: 'Zion Thai Restaurant',
-        lat: 5.559144,
-        lng: -0.177189
+        title: 'NASA Advanced Supercomputing Division',
+        lat: 37.420992,
+        lng: -122.065015
+    },
+    {
+        title: 'Shoreline Athletic Fields',
+        lat: 37.427723,
+        lng: -122.094240
     }
 ];
