@@ -103,7 +103,7 @@ body {
 
 #sidebar ul.components {
     padding: 20px 0;
-    border-bottom: 1px solid blanchedalmond;
+    /*border-bottom: 1px solid blanchedalmond;*/
 }
 
 #sidebar ul p {
@@ -117,18 +117,16 @@ body {
     display: block;
 }
 
-
-/*#sidebar ul li a:hover {
+#sidebar ul li a:hover {
     color: #7386D5;
     background: #fff;
-}*/
+}
 
-
-/*#sidebar ul li.active>a,
+#sidebar ul li.active>a,
 a[aria-expanded="true"] {
     color: #fff;
     background: #6d7fcc;
-}*/
+}
 
 a[data-toggle="collapse"] {
     position: relative;
