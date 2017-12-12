@@ -9,20 +9,21 @@ function mapView() {
     // Create an empty markers array to load all markers from the markers.js file
     // to be displayed on the map
     this.markers = [];
+    this.searchOption = ko.observable("");
+
 
     // Function to display map centered on Accra, Ghana
     this.initMap = function() {
         map = new google.maps.Map(document.getElementById('map'), {
             center: {
-                lat: 5.603717,
-                lng: -0.186964
+                lat: 37.418825,
+                lng: -122.080894
             },
-            zoom: 13,
+            zoom: 15,
             styles: styles,
             mapTypeControl: false
         });
         // alert('this gets called and runs');
-
 
         // Run through array of markers
         for (var i = 0; i < myLocations.length; i++) {
@@ -38,6 +39,10 @@ function mapView() {
                     lat: this.locationLat,
                     lng: this.locationLng
                 },
+                // Pass the latlng vars here to enable easy calls from the
+                // foursquare API URL
+                lat: this.locationLat,
+                lng: this.locationLng,
                 animation: google.maps.Animation.DROP
             });
 
@@ -70,27 +75,46 @@ function mapView() {
             infowindow.setContent('');
             infowindow.marker = marker;
 
-            infowindow.setContent('<div id="info-window">' + marker.title + '</div>');
-            infowindow.open(map, marker);
-
-            // Close the infowindow if user clicks on the close button
-            // infowindow.addListener('closeclick', function() {
-            //     infowindow.this.marker(null);
-            // });
-
             // Foursquare API starts here
             var fourSquareApiURL = 'https://api.foursquare.com/v2/venues/search?ll=' +
-                marker.position["lat"] + ',' + marker.position["lng"] + '&client_id=' + fourSquareClientID +
+                marker.lat + ',' + marker.lng + '&client_id=' + fourSquareClientID +
                 '&client_secret=' + fourSquareClientSecret + '&query=' + marker.title + '&v=20171209';
 
-            $.getJSON(fourSquareApiURL, function(marker) {});
-            // alert(typeof(marker.position));
+            $.getJSON(fourSquareApiURL, function(marker) {
+                var response = marker.response.venues[0];
+                self.checkinsCount = response.stats.checkinsCount;
+                self.tipCount = response.stats.tipCount;
+                self.category = response.categories[0].name;
+                // infowindow.setContent('<div>' + self.checkinsCount + '</div>')
+            }).fail(function() {
+                alert("There was an error with the Foursquare API call.Please refresh the page and try again ")
+            });
+            infowindow.setContent('<div><h4>' + marker.title + '</h4><p>Type of place: ' +
+                self.category + '</p><p>Times people have been here: ' + self.checkinsCount +
+                '</p><p>Tips people have given: ' + self.tipCount + '</p></div>');
+            infowindow.open(map, marker);
+            // console.log(fourSquareApiURL);
         }
-
     }
 
-    // Call the map function
+    // // Call the map function
     this.initMap();
+
+    // Check this before final push
+    this.myLocationsFilter = ko.computed(function() {
+        var result = [];
+        for (var i = 0; i < this.markers.length; i++) {
+            var markerLocation = this.markers[i];
+            if (markerLocation.title.toLowerCase().includes(this.searchOption()
+                    .toLowerCase())) {
+                result.push(markerLocation);
+                this.markers[i].setVisible(true);
+            } else {
+                this.markers[i].setVisible(false);
+            }
+        }
+        return result;
+    }, this);
 }
 
 function runApp() {
