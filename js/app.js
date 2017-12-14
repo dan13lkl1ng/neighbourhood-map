@@ -49,22 +49,22 @@ function mapView() {
             // Push the marker after each loop into the array of markers declared above
             this.markers.push(this.marker);
             // On click, bounce the marker(animation)
-            this.marker.addListener('click', self.animateMarker);
+            this.marker.addListener('click', self.animateAndPopulateMarker);
             // On click, display the infowindow with information about the location
-            this.marker.addListener('click', function() {
-                self.populateInfoWindow(this, self.largeInfowindow);
-            });
+            // this.marker.addListener('click', function() {
+            //     self.populateInfoWindow(this, self.largeInfowindow);
+            // });
         }
     };
 
     // Animate marker by bouncing
-    this.animateMarker = function() {
+    this.animateAndPopulateMarker = function() {
+        self.populateInfoWindow(this, self.largeInfowindow);
         this.setAnimation(google.maps.Animation.BOUNCE);
         setTimeout((function() {
             this.setAnimation(null);
         }).bind(this), 5000);
     };
-
 
     // Create an info window
     this.largeInfowindow = new google.maps.InfoWindow();
@@ -100,8 +100,8 @@ function mapView() {
     // // Call the map function
     this.initMap();
 
-    // Check this before final push
-    this.myLocationsFilter = ko.computed(function() {
+    // Filters the location and appends the location to a list
+    this.locationsFilter = ko.computed(function() {
         var result = [];
         for (var i = 0; i < this.markers.length; i++) {
             var markerLocation = this.markers[i];
