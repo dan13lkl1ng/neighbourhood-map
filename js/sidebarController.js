@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
     // opening the sidebar
-    $('#sidebarCollapse').on('click', function() {
+    $('#sidebar-collapse').on('click', function() {
         // open sidebar
         $('#sidebar').addClass('active');
     });
