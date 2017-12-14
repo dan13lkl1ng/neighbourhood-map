@@ -55,6 +55,13 @@ body {
     left: 0;
 }
 
+#sidebarCollapse {
+    background: #000000d6;
+    border-radius: 10px;
+    border: 5px;
+    margin-left: 10px;
+}
+
 #dismiss {
     width: 35px;
     height: 35px;
@@ -82,20 +89,6 @@ body {
     color: #4c4c4c;
 }
 
-
-/*.glyphicon-align-left {
-    color: #4c4c4c;
-}*/
-
-.overlay {
-    position: fixed;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0, 0, 0, 0.7);
-    z-index: 998;
-    display: none;
-}
-
 #sidebar .sidebar-header {
     padding: 20px;
     background: #7f7f7f;
@@ -103,18 +96,11 @@ body {
 
 #sidebar ul.components {
     padding: 20px 0;
-    /*border-bottom: 1px solid blanchedalmond;*/
 }
 
 #sidebar ul p {
     color: #fff;
     padding: 10px;
-}
-
-#sidebar ul li a {
-    padding: 10px;
-    font-size: 1.1em;
-    display: block;
 }
 
 #sidebar ul li a:hover {
@@ -128,40 +114,26 @@ a[aria-expanded="true"] {
     background: #6d7fcc;
 }
 
-a[data-toggle="collapse"] {
+#markerTitle:hover {
+    color: #7386D5;
+    background: #fff;
+    cursor: pointer;
+}
+
+.search {
+    color: black;
+    padding: 10px;
+}
+
+#searchArea {
+    text-align: center;
+}
+
+
+/*a[data-toggle="collapse"] {
     position: relative;
-}
-
-
-/*a[aria-expanded="false"]::before,
-a[aria-expanded="true"]::before {
-    content: '\e259';
-    display: block;
-    position: absolute;
-    right: 20px;
-    font-family: 'Glyphicons Halflings';
-    font-size: 0.6em;
 }*/
-
-
-/*a[aria-expanded="true"]::before {
-    content: '\e260';
-}*/
-
-ul ul a {
-    font-size: 0.9em !important;
-    padding-left: 30px !important;
-    background: #6d7fcc;
-}
 
 ul.CTAs {
     padding: 20px;
-}
-
-ul.CTAs a {
-    text-align: center;
-    font-size: 0.9em !important;
-    display: block;
-    border-radius: 5px;
-    margin-bottom: 5px;
 }
