@@ -22,5 +22,15 @@ var myLocations = [{
         title: 'Shoreline Athletic Fields',
         lat: 37.427723,
         lng: -122.094240
+    },
+    {
+        title: 'NASA Ames Research Center',
+        lat: 37.416476,
+        lng: -122.064017
+    },
+    {
+        title: 'Stevens Creek Trail',
+        lat: 37.403384,
+        lng: -122.069611
     }
 ];
