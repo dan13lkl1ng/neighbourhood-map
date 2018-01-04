@@ -80,18 +80,21 @@ function mapView() {
                 marker.lat + ',' + marker.lng + '&client_id=' + fourSquareClientID +
                 '&client_secret=' + fourSquareClientSecret + '&query=' + marker.title + '&v=20171209';
 
-            $.getJSON(fourSquareApiURL, function(marker) {
+            $.getJSON(fourSquareApiURL).done(function(marker) {
                 var response = marker.response.venues[0];
                 self.checkinsCount = response.stats.checkinsCount;
                 self.tipCount = response.stats.tipCount;
                 self.category = response.categories[0].name;
                 // infowindow.setContent('<div>' + self.checkinsCount + '</div>')
+
+                infowindow.setContent(self.markerTitle + '<div><p>Type of place: ' +
+                    self.category + '</p><p>Times people have been here: ' + self.checkinsCount +
+                    '</p><p>Tips people have given: ' + self.tipCount + '</p></div>');
             }).fail(function() {
-                alert("There was an error with the Foursquare API call.Please refresh the page and try again ")
+                alert("There was an error with the Foursquare API call.Please try again ")
             });
-            infowindow.setContent('<div><h4>' + marker.title + '</h4><p>Type of place: ' +
-                self.category + '</p><p>Times people have been here: ' + self.checkinsCount +
-                '</p><p>Tips people have given: ' + self.tipCount + '</p></div>');
+
+            this.markerTitle = ('<h4>' + marker.title + '</h4>')
             infowindow.open(map, marker);
             // console.log(fourSquareApiURL);
         }
