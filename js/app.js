@@ -93,17 +93,15 @@ function mapView() {
             // Push the marker after each loop into the array of markers declared above
             this.markers.push(this.marker);
             // On click, bounce and populate the marker
-            this.marker.addListener('click', self.animateAndPopulateMarker);
+            // this.marker.addListener('click', self.animateAndPopulateMarker);
+            this.marker.addListener('click', function() {
+                self.populateInfoWindow(this, self.largeInfowindow);
+                this.setAnimation(google.maps.Animation.BOUNCE);
+                setTimeout((function() {
+                    this.setAnimation(null);
+                }).bind(this), 3050);
+            });
         }
-    };
-
-    // Animate marker by bouncing
-    this.animateAndPopulateMarker = function() {
-        self.populateInfoWindow(this, self.largeInfowindow);
-        this.setAnimation(google.maps.Animation.BOUNCE);
-        setTimeout((function() {
-            this.setAnimation(null);
-        }).bind(this), 3000);
     };
 
     // Create an info window
@@ -115,7 +113,7 @@ function mapView() {
             infowindow.setContent('');
             infowindow.marker = marker;
 
-            // Foursquare API starts here
+            // Foursquare API starts here. Code from the ajax course
             var fourSquareApiURL = 'https://api.foursquare.com/v2/venues/search?ll=' +
                 marker.lat + ',' + marker.lng + '&client_id=' + fourSquareClientID +
                 '&client_secret=' + fourSquareClientSecret + '&query=' + marker.title + '&v=20171209';
@@ -143,20 +141,20 @@ function mapView() {
     // Call the map function
     this.initMap();
 
-    // Filters the location and appends the location to a list
-    this.markerFilter = ko.computed(function() {
-        var result = [];
+    // Searches the location and appends the location to a list
+    this.markerSearch = ko.computed(function() {
+        var returnedList = [];
         for (var i = 0; i < this.markers.length; i++) {
-            var markerLocation = this.markers[i];
-            if (markerLocation.title.toLowerCase().includes(this.searchOption()
+            // Compare user input to marker title in lower case
+            if (this.markers[i].title.toLowerCase().includes(this.searchOption()
                     .toLowerCase())) {
-                result.push(markerLocation);
+                returnedList.push(this.markers[i]);
                 this.markers[i].setVisible(true);
             } else {
                 this.markers[i].setVisible(false);
             }
         }
-        return result;
+        return returnedList;
     }, this);
 }
 

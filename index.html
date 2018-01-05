@@ -32,7 +32,7 @@
                     <p>Filter locations here</p>
                     <input class="search" data-bind="textInput: searchOption, valueUpdate: 'afterkeydown'" placeholder="Type to filter...">
                 </div>
-                <ul class="list-unstyled CTAs" data-bind="foreach: markerFilter">
+                <ul class="list-unstyled CTAs" data-bind="foreach: markerSearch">
                     <h5 id="markerTitle">
                         <li data-bind="text: title, click: $parent.animateAndPopulateMarker">
                         </li>
