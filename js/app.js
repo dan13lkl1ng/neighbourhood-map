@@ -93,15 +93,18 @@ function mapView() {
             // Push the marker after each loop into the array of markers declared above
             this.markers.push(this.marker);
             // On click, bounce and populate the marker
-            // this.marker.addListener('click', self.animateAndPopulateMarker);
-            this.marker.addListener('click', function() {
-                self.populateInfoWindow(this, self.largeInfowindow);
-                this.setAnimation(google.maps.Animation.BOUNCE);
-                setTimeout((function() {
-                    this.setAnimation(null);
-                }).bind(this), 3050);
-            });
+            this.marker.addListener('click', self.infowindowAndBounceMarker);
         }
+    };
+
+    // Merge populateInfoWindow function and marker animation for
+    // an easy call in the front end
+    this.infowindowAndBounceMarker = function() {
+        self.populateInfoWindow(this, self.largeInfowindow);
+        this.setAnimation(google.maps.Animation.BOUNCE);
+        setTimeout((function() {
+            this.setAnimation(null);
+        }).bind(this), 3050);
     };
 
     // Create an info window
