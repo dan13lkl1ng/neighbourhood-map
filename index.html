@@ -32,7 +32,7 @@
                     <p>Filter locations here</p>
                     <input class="search" data-bind="textInput: searchOption, valueUpdate: 'afterkeydown'" placeholder="Type to filter...">
                 </div>
-                <ul class="list-unstyled CTAs" data-bind="foreach: locationsFilter">
+                <ul class="list-unstyled CTAs" data-bind="foreach: markerFilter">
                     <h5 id="markerTitle">
                         <li data-bind="text: title, click: $parent.animateAndPopulateMarker">
                         </li>
@@ -59,15 +59,14 @@
     </div>
 
     <script src="js/lib/knockout-3.2.0.js"></script>
-    <script async defer src="js/app.js"></script>
+    <script src="js/app.js"></script>
     <script src="js/googleMapStyles.js"></script>
-    <script async defer src="js/markers.js"></script>
     <script src="js/sidebarController.js"></script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?libraries=places,drawing,geometry&key=AIzaSyAPhCJXmWaw96CUBIS_Ji7IBGOChZRUUqE&v=3&callback=runApp"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
     <!-- jQuery Custom Scroller CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script async src="https://maps.googleapis.com/maps/api/js?libraries=places,drawing,geometry&key=AIzaSyAPhCJXmWaw96CUBIS_Ji7IBGOChZRUUqE&v=3&callback=runApp" onerror="googleError()"></script>
 </body>
 
 </html>

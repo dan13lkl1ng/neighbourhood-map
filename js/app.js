@@ -1,3 +1,10 @@
+/** 
+ * This application runs by opening the google maps, pinning
+ * pre-defined markers(fetched from the markers.js file), fetching
+ * some information about the markers from foursquare and displaying
+ * these information when a user clicks on a maps.
+ */
+
 // Declare global variables for this application
 var map;
 // Foursquare clientID and client secret
@@ -23,7 +30,44 @@ function mapView() {
             styles: styles,
             mapTypeControl: false
         });
-        // alert('this gets called and runs');
+
+        // List of markers
+        var myLocations = [{
+                title: 'Google Building 41',
+                lat: 37.422408,
+                lng: -122.085609
+            },
+            {
+                title: 'Google Android Lawn Statues',
+                lat: 37.418439,
+                lng: -122.088029
+            },
+            {
+                title: 'Computer History Museum',
+                lat: 37.414278,
+                lng: -122.077417
+            },
+            {
+                title: 'NASA Advanced Supercomputing Division',
+                lat: 37.420992,
+                lng: -122.065015
+            },
+            {
+                title: 'Shoreline Athletic Fields',
+                lat: 37.427723,
+                lng: -122.094240
+            },
+            {
+                title: 'NASA Ames Research Center',
+                lat: 37.416476,
+                lng: -122.064017
+            },
+            {
+                title: 'Stevens Creek Trail',
+                lat: 37.403384,
+                lng: -122.069611
+            }
+        ];
 
         // Run through array of markers
         for (var i = 0; i < myLocations.length; i++) {
@@ -48,12 +92,8 @@ function mapView() {
 
             // Push the marker after each loop into the array of markers declared above
             this.markers.push(this.marker);
-            // On click, bounce the marker(animation)
+            // On click, bounce and populate the marker
             this.marker.addListener('click', self.animateAndPopulateMarker);
-            // On click, display the infowindow with information about the location
-            // this.marker.addListener('click', function() {
-            //     self.populateInfoWindow(this, self.largeInfowindow);
-            // });
         }
     };
 
@@ -63,7 +103,7 @@ function mapView() {
         this.setAnimation(google.maps.Animation.BOUNCE);
         setTimeout((function() {
             this.setAnimation(null);
-        }).bind(this), 5000);
+        }).bind(this), 3000);
     };
 
     // Create an info window
@@ -100,11 +140,11 @@ function mapView() {
         }
     }
 
-    // // Call the map function
+    // Call the map function
     this.initMap();
 
     // Filters the location and appends the location to a list
-    this.locationsFilter = ko.computed(function() {
+    this.markerFilter = ko.computed(function() {
         var result = [];
         for (var i = 0; i < this.markers.length; i++) {
             var markerLocation = this.markers[i];
