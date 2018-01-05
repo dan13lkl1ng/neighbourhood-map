@@ -28,7 +28,6 @@ You can checkout a live version [here](https://twumm.github.io/neighbourhood-map
 * `index.html` - Renders the map in the browser.
 * `app.js` - Contains the engine of the application. It makes the necessary calls to the Google and Foursquare API and aids in filtering the list of locations.
 * `googleMapStyles.js` - For custom styling the Google maps.
-* `markers.js` - Contains the list of locations with their respective latitudes and longitudes.
 * `sidebarController.js` - Controls the sidebar display/hide toggle.
 * `knockout-3.2.0.js` - Used in rendering locations in the map and for creating the filter function.
 * `style.css` - Contains the pages design styles.
