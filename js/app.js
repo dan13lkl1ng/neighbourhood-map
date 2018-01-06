@@ -35,7 +35,7 @@ function MapView() {
         for (var i = 0; i < myLocations.length; i++) {
             this.locationTitle = myLocations[i].title;
             this.locationLat = myLocations[i].lat;
-            this.locationLng = myLocations[i].lng
+            this.locationLng = myLocations[i].lng;
 
             // Create a marker for each location
             this.marker = new google.maps.Marker({
@@ -94,14 +94,14 @@ function MapView() {
                     self.category + '</p><p>Times people have been here: ' + self.checkinsCount +
                     '</p><p>Tips people have given: ' + self.tipCount + '</p></div>');
             }).fail(function() {
-                alert("There was an error with the Foursquare API call.Please try again ")
+                alert("There was an error with the Foursquare API call.Please try again ");
             });
 
-            this.markerTitle = ('<h4>' + marker.title + '</h4>')
+            this.markerTitle = ('<h4>' + marker.title + '</h4>');
             infowindow.open(map, marker);
             // console.log(fourSquareApiURL);
         }
-    }
+    };
 
     // Call the map function
     this.initMap();
