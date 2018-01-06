@@ -11,7 +11,7 @@ var map;
 var fourSquareClientID = "104SKXFLB12DD0RLZUEO3CX5EWPN0WF1TM4C5VL2QRBVJRDY";
 var fourSquareClientSecret = "DPYGYHCAMDDMK0UYINKVXHLYQNXLOOMJYUKB55R2NCVJIQCN";
 
-function mapView() {
+function MapView() {
     var self = this;
     // Create an empty markers array to load all markers from the markers.js file
     // to be displayed on the map
@@ -123,6 +123,10 @@ function mapView() {
     }, this);
 }
 
+function googleError() {
+    alert('There has been an error loading the map. Please refresh the page to try again');
+}
+
 function runApp() {
-    ko.applyBindings(new mapView());
+    ko.applyBindings(new MapView());
 }
